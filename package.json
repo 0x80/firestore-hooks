@@ -1,14 +1,49 @@
 {
   "name": "firestore-hooks",
-  "version": "0.0.0",
-  "description": "Clean Firestore hooks for Typescript React",
-  "main": "index.js",
+  "version": "1.0.0-0",
+  "description": "Clean and typed React hooks for handling Firestore documents",
+  "keywords": [
+    "firestore",
+    "react",
+    "hooks",
+    "typescript"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "build": "tsup-node",
+    "test": "echo \"No test specified\""
   },
   "author": "Thijs Koerselman",
   "license": "MIT",
+  "dependencies": {
+    "react-firebase-hooks": "^5.1.1"
+  },
   "devDependencies": {
-    "typescript": "^4.5.2"
+    "eslint": "^8.52.0",
+    "eslint-config-0x80": "^0.0.0",
+    "np": "^8.0.4",
+    "prettier": "^3.0.3",
+    "prettier-plugin-jsdoc": "^1.1.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "firebase": ">=9.0.0"
   }
 }
