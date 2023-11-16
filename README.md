@@ -56,19 +56,20 @@ user.ref.update({ displayName: "new name" } satisfies Partial<User>);
 
 ## FsDocument
 
-The original Firestore API, while quite convenient, is a little more convoluted
-that I would like. Data is retrieved from the snapshot with a `data()` function
-because it accepts parameters that you will likely never use. Also Typescript
-generics are not available and the [withConverter API]() that could be used to
-type your data, is overkill if you're not interested in converting data.
+The original Firestore API, while quite convenient, seems more verbose than
+needed for the vast majority of use-cases. Data is retrieved from the snapshot
+with a `data()` but it accepts optional parameters that you will likely never
+use. Also, Typescript generics are not available and the [withConverter API](),
+that could be used to type your data, is overkill if you are not interested in
+converting your data.
 
 A lot of libraries that make abstractions for Firestore (e.g.
-[react-firebase-hooks]()) merge the id and data into a single object, similar to
-MongoDB. I think this is not very elegant, because in Firestore the document id
-is clearly separated from the data. Bringing the two together not only makes it
-harder to type your data, but also potentially creates a collision, because a
-document could have an `id` field as part of its data which is different from
-the actual document id.
+[react-firebase-hooks]()) merge the id and data into a single object. I think
+this is not very elegant, because in Firestore the document id is clearly
+separated from the data. Bringing the two together not only makes it harder to
+type your data, but also potentially creates a naming collision, because a
+document is allowed to have an `id` field as part of its data, separate from the
+actual document id.
 
 The most convenient document abstraction I can come up with is:
 
@@ -84,8 +85,8 @@ The ref is included, because sometimes after working with the data, you then
 want to mutate the same document with `set` or `update`.
 
 It is not called `Document`, because in web environments that is already the
-global HTML document type, and so IDEs tend to pick the wrong type for the
-automatic imports.
+global HTML document type, and so IDEs tend to pick the wrong type when
+automatically generating imports for you.
 
 ## Errors
 
