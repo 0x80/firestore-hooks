@@ -1,9 +1,10 @@
 import type {
   CollectionReference,
   DocumentReference,
+  Firestore,
   Query,
-} from "firebase/firestore";
-import { doc } from "firebase/firestore";
+} from "firebase/firestore/lite";
+import { doc, getDoc } from "firebase/firestore/lite";
 import {
   useCollection as _useCollection,
   useCollectionOnce as _useCollectionOnce,
@@ -14,9 +15,50 @@ import { makeFsDocument } from "./helpers/index.js";
 import type { FsDocument } from "./types.js";
 import { getErrorMessage } from "./utils/index.js";
 
+export function printDocumentX(documentRef?: DocumentReference) {
+  // console.log("+++ documentRef", documentRef);
+
+  // invariant(
+  //   documentRef instanceof DocumentReference,
+  //   "useDocumentX() requires a DocumentReference argument"
+  // );
+
+  if (!documentRef) {
+    return;
+  }
+
+  getDoc(documentRef)
+    .then((doc) => {
+      console.log("+++ doc", doc.data());
+    })
+    .catch((err) => console.error(err));
+}
+
+export function printDocumentByPath(db: Firestore, path: string) {
+  // console.log("+++ documentRef", documentRef);
+
+  // invariant(
+  //   documentRef instanceof DocumentReference,
+  //   "useDocumentX() requires a DocumentReference argument"
+  // );
+
+  getDoc(doc(db, path))
+    .then((doc) => {
+      console.log("+++ doc", doc.data());
+    })
+    .catch((err) => console.error(err));
+}
+
 export function useDocumentX<T>(
   documentRef?: DocumentReference
 ): [FsDocument<T> | undefined, boolean] {
+  // console.log("+++ documentRef", documentRef);
+
+  // invariant(
+  //   documentRef instanceof DocumentReference,
+  //   "useDocumentX() requires a DocumentReference argument"
+  // );
+
   const [snapshot, isLoading, error] = _useDocumentFak(documentRef);
 
   if (error) {

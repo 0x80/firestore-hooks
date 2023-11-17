@@ -15,6 +15,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "require": "./dist/index.cjs",
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
@@ -28,12 +29,15 @@
   "scripts": {
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
-    "xbuild": "tsup",
-    "build": "tsc",
+    "build": "tsup",
+    "Xbuild": "tsc",
     "test": "echo \"No test specified\""
   },
   "author": "Thijs Koerselman",
   "license": "MIT",
+  "dependencies": {
+    "firebase": "^10.6.0"
+  },
   "devDependencies": {
     "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^17.0.70",
@@ -48,7 +52,6 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "firebase": ">=9.0.0",
     "react": ">=16.8.0"
   }
 }
