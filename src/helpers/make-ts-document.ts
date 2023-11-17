@@ -1,5 +1,5 @@
 import type { DocumentData, DocumentSnapshot } from "firebase/firestore";
-import type { FsDocument } from "../types";
+import type { FsDocument } from "../types.js";
 
 export function makeFsDocument<T>(
   doc: DocumentSnapshot<DocumentData>

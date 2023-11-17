@@ -1,1 +1,1 @@
-export * from "./make-ts-document";
+export * from "./make-ts-document.js";

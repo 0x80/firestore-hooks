@@ -1,9 +1,13 @@
 # Firestore Hooks
 
-Clean and typed React hooks for handling Firestore documents. Currently it is a
-simplified and opinionated abstraction on [react-firebase-hooks](). Eventually I
-would like to extract the essential parts of it, to cut any overhead and make
-this dependency free.
+Simple and typed React hooks for handling Firestore documents. Currently it is a
+stripped down and more opinionated abstraction on [react-firebase-hooks]().
+Eventually I would like to extract the essential parts of it, to cut any
+overhead and make this dependency free.
+
+In my personal experience using Firestore over the last 7 years or so, I have
+not needed most the API surface. If you deem something essential let me know and
+I will consider adding support for it.
 
 ## Installation
 

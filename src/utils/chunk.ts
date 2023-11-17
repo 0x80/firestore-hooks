@@ -1,5 +1,5 @@
-import { invariant } from "./invariant";
-import { isEmpty } from "./is-empty";
+import { invariant } from "./invariant.js";
+import { isEmpty } from "./is-empty.js";
 
 export function chunk<T>(array: T[], size: number): T[][] {
   invariant(size > 0, "Size must be greater than 0");

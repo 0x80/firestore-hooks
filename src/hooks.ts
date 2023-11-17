@@ -1,20 +1,43 @@
-import type { CollectionReference, Query } from "firebase/firestore";
+import type {
+  CollectionReference,
+  DocumentReference,
+  Query,
+} from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import {
   useCollection as _useCollection,
   useCollectionOnce as _useCollectionOnce,
-  useDocument as _useDocument,
+  useDocument as _useDocumentFak,
   useDocumentOnce as _useDocumentOnce,
-} from "react-firebase-hooks/firestore";
-import { makeFsDocument } from "./helpers";
-import type { FsDocument } from "./types";
-import { getErrorMessage } from "./utils";
+} from "./forked-from-rfh/index.js";
+import { makeFsDocument } from "./helpers/index.js";
+import type { FsDocument } from "./types.js";
+import { getErrorMessage } from "./utils/index.js";
 
-export function useDocument<T>(
+export function useDocumentX<T>(
+  documentRef?: DocumentReference
+): [FsDocument<T> | undefined, boolean] {
+  const [snapshot, isLoading, error] = _useDocumentFak(documentRef);
+
+  if (error) {
+    throw new Error(
+      `Failed to use document from ${documentRef?.path}: ${getErrorMessage(
+        error
+      )}`
+    );
+  }
+
+  return [
+    snapshot?.exists() ? makeFsDocument<T>(snapshot) : undefined,
+    isLoading,
+  ];
+}
+
+export function useDocumentZ<T>(
   collectionRef: CollectionReference,
   documentId?: string
 ): [FsDocument<T> | undefined, boolean] {
-  const [snapshot, isLoading, error] = _useDocument(
+  const [snapshot, isLoading, error] = _useDocumentFak(
     documentId ? doc(collectionRef, documentId) : undefined
   );
 
