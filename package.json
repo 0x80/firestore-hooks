@@ -29,7 +29,7 @@
   "scripts": {
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
-    "build": "tsup-node",
+    "build": "tsup",
     "test": "echo \"No test specified\""
   },
   "author": "Thijs Koerselman",
