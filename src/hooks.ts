@@ -3,8 +3,8 @@ import type {
   DocumentReference,
   Firestore,
   Query,
-} from "firebase/firestore/lite";
-import { doc, getDoc } from "firebase/firestore/lite";
+} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import {
   useCollection as _useCollection,
   useCollectionOnce as _useCollectionOnce,
