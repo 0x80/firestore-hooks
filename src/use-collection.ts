@@ -5,7 +5,7 @@ import {
   query,
 } from "firebase/firestore";
 import { useMemo } from "react";
-import { useCollection } from "./forked-from-rfh/useCollection.js";
+import { useCollection as useCollection_fork } from "./forked-from-rfh/useCollection.js";
 import type { FsDocument } from "./types.js";
 import { isDefined } from "./utils/is-present.js";
 
@@ -19,7 +19,7 @@ export function useTypedCollection<T>(
     ? query(collectionRef, limit(500))
     : query(collectionRef, ...queryConstraints.filter(isDefined));
 
-  const [snapshot, isLoading, error] = useCollection(_query);
+  const [snapshot, isLoading, error] = useCollection_fork(_query);
 
   if (error) {
     throw new Error(
@@ -40,3 +40,5 @@ export function useTypedCollection<T>(
 
   return [docs, isLoading];
 }
+
+export const useCollection = useTypedCollection;
