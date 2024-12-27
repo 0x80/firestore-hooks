@@ -23,8 +23,8 @@ I will consider adding support for it.
 ## Usage
 
 The API is optimized for globally configured collection refs. I think it is good
-practice to reuse these refs when referring to collections, because it prevents
-repetition and typos.
+practice to reuse these refs when referring to collections, because it reduces
+boilerplate and prevents typos.
 
 For example, create a global file like `refs.ts`:
 
