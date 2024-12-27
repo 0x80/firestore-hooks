@@ -1,6 +1,3 @@
 {
-  "extends": "@codecompose/typescript-config/library",
-  "compilerOptions": {
-    "outDir": "./dist" // required for tsup for now
-  }
+  "extends": "@codecompose/typescript-config/single-library"
 }
