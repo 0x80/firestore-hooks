@@ -2,17 +2,17 @@ import type { CollectionReference } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { useMemo } from "react";
 import {
-  useDocument as useDocument_fork,
-  useDocumentOnce as useDocumentOnce_fork,
+  useDocument as useDocument_orig,
+  useDocumentOnce as useDocumentOnce_orig,
 } from "./forked-from-rfh/useDocument.js";
 import type { FsDocument } from "./types.js";
 
-export function useTypedDocument<T>(
+export function useDocument<T>(
   collectionRef: CollectionReference,
   documentId?: string
 ): [FsDocument<T> | undefined, boolean] {
   const ref = documentId ? doc(collectionRef, documentId) : undefined;
-  const [snapshot, isLoading, error] = useDocument_fork(ref);
+  const [snapshot, isLoading, error] = useDocument_orig(ref);
 
   if (error) {
     throw error;
@@ -29,18 +29,13 @@ export function useTypedDocument<T>(
   return [document, isLoading];
 }
 
-export const useDocument = useTypedDocument;
-
-/**
- * A version of useTypedDocument that doesn't throw when the document doesn't
- * exist.
- */
-export function useTypedDocumentMaybe<T>(
+/** A version of useDocument that doesn't throw when the document doesn't exist. */
+export function useDocumentMaybe<T>(
   collectionRef: CollectionReference,
   documentId?: string
 ): [FsDocument<T> | undefined, boolean] {
   const ref = documentId ? doc(collectionRef, documentId) : undefined;
-  const [snapshot, isLoading] = useDocument_fork(ref);
+  const [snapshot, isLoading] = useDocument_orig(ref);
 
   const document = useMemo(
     () =>
@@ -53,25 +48,21 @@ export function useTypedDocumentMaybe<T>(
   return [document, isLoading];
 }
 
-export const useDocumentMaybe = useTypedDocumentMaybe;
-
-export function useTypedDocumentData<T>(
+export function useDocumentData<T>(
   collectionRef: CollectionReference,
   documentId?: string
 ): [T | undefined, boolean] {
-  const [document, isLoading] = useTypedDocument<T>(collectionRef, documentId);
+  const [document, isLoading] = useDocument<T>(collectionRef, documentId);
 
   return [document?.data, isLoading];
 }
 
-export const useDocumentData = useTypedDocumentData;
-
-export function useTypedDocumentOnce<T>(
+export function useDocumentOnce<T>(
   collectionRef: CollectionReference,
   documentId?: string
 ): [FsDocument<T> | undefined, boolean] {
   const ref = documentId ? doc(collectionRef, documentId) : undefined;
-  const [snapshot, isLoading, error] = useDocumentOnce_fork(ref);
+  const [snapshot, isLoading, error] = useDocumentOnce_orig(ref);
 
   if (error) {
     throw error;
@@ -87,5 +78,3 @@ export function useTypedDocumentOnce<T>(
 
   return [document, isLoading];
 }
-
-export const useDocumentOnce = useTypedDocumentOnce;
