@@ -1,7 +1,7 @@
 # Firestore Hooks
 
 Simple and typed React hooks for handling Firestore documents. Currently it is a
-more focussed and opinionated abstraction on top of[react-firebase-hooks]().
+more focussed and opinionated abstraction on top of [react-firebase-hooks]().
 Eventually, we will likely extract or reimplement the essential parts of that
 library, to make this dependency free.
 
@@ -87,13 +87,15 @@ user.ref.update({ displayName: "new name" } satisfies UpdateData<User>);
 ```
 
 Here we use `satisfies` to ensure that the update data is compatible with the
-document data type. The `UpdateData` type is a type that you can import from the
-`firebase/firestore` package.
+document data type. The `UpdateData` type you can import from the
+`firebase/firestore` package and it is similar to `Partial` but also understands
+dot-notation for updating nested fields.
 
-Personally, I prefer to do all document mutations via an API endpoint, so you
-might want to consider that instead, especially if you have little control over
-the development of clients or older versions could be around for a while like
-with react-native.
+Personally, I prefer to do all document mutations server-side via an API
+endpoint. You might want to consider that, especially if you have complete
+control over the development of client apps or older versions could be around
+for a while like with react-native. It can also save you from having to write
+complex database rules for your Firestore documents.
 
 ## FsDocument
 
