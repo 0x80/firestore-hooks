@@ -2,12 +2,9 @@
 
 Simple and typed React hooks for handling Firestore documents. Currently it is a
 more focussed and opinionated abstraction on top of [react-firebase-hooks]().
+
 Eventually, we will likely extract or reimplement the essential parts of that
 library, to make this dependency free.
-
-In my personal experience using Firestore spanning 8 years, I have not needed
-the other parts of react-firebase-hooks, but if you deem something essential let
-me know and I will consider supporting it.
 
 ## Installation
 
@@ -24,13 +21,13 @@ me know and I will consider supporting it.
 
 ### Hooks
 
-| Hook               | Description                                          |
-| ------------------ | ---------------------------------------------------- |
-| `useDocument`      | Get a document and subscribe to changes              |
-| `useDocumentData`  | Get only the document data and subscribe to changes  |
-| `useDocumentMaybe` | Get a document that might not exist                  |
-| `useDocumentOnce`  | Get a document once and do not subscribe for changes |
-| `useCollection`    | Query a collection and subscribe for changes         |
+| Hook               | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| `useDocument`      | Use a document and subscribe to changes                       |
+| `useDocumentData`  | Use only the data part of a document and subscribe to changes |
+| `useDocumentMaybe` | Use a document that might not exist                           |
+| `useDocumentOnce`  | Use a document once and do not subscribe for changes          |
+| `useCollection`    | Query a collection and subscribe for changes                  |
 
 ### Regular Functions
 
@@ -40,7 +37,7 @@ fetch a document outside of a component/hook.
 | Function                          | Description                                                    |
 | --------------------------------- | -------------------------------------------------------------- |
 | `getDocument`                     | Fetch a document                                               |
-| `getDocumentData`                 | Fetch only the data part of the document                       |
+| `getDocumentData`                 | Fetch only the data part of a document                         |
 | `getDocumentMaybe`                | Fetch a document that might not exist                          |
 | `getDocumentFromTransaction`      | Fetch a document as part of a transaction                      |
 | `getDocumentFromTransactionMaybe` | Fetch a document that might not exist as part of a transaction |
