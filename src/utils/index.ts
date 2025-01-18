@@ -6,5 +6,3 @@ export * from "./is-empty.js";
 export * from "./is-present.js";
 export * from "./last.js";
 export * from "./make-wait.js";
-export * from "./take.js";
-export * from "./verbose.js";

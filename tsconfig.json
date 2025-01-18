@@ -1,3 +1,6 @@
 {
-  "extends": "@codecompose/typescript-config/single-library"
+  "extends": "@codecompose/typescript-config/single-library",
+  "compilerOptions": {
+    "lib": ["esnext", "dom"]
+  }
 }
