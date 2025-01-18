@@ -1,10 +1,6 @@
 # Firestore Hooks
 
-Simple and typed React hooks for handling Firestore documents. Currently it is a
-more focussed and opinionated abstraction on top of [react-firebase-hooks]().
-
-Eventually, we will likely extract or reimplement the essential parts of that
-library, to make this dependency free.
+> This library is now deprecated. Please use [@typed-firestore/react](https://github.com/0x08/typed-firestore-react) instead.
 
 ## Installation
 
